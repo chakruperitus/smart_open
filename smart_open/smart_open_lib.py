@@ -681,7 +681,7 @@ def _my_urlsplit(url):
     https://github.com/RaRe-Technologies/smart_open/issues/285
     """
     parsed_url = urlparse.urlsplit(url, allow_fragments=False)
-    if parsed_url.scheme not in smart_open_s3.SUPPORTED_SCHEMES or '?' not in url:
+    if parsed_url.scheme not in smart_open_s3.SUPPORTED_SCHEMES + (smart_open_gcs.SUPPORTED_SCHEME,) or '?' not in url:
         return parsed_url
 
     sr = urlparse.urlsplit(url.replace('?', '\n'), allow_fragments=False)
